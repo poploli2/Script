@@ -1,11 +1,15 @@
-let url = $request.url;
+let body = $request.body;
 
-let urlObj = new URL(url);
+let jsonData = JSON.parse(body);
 
-if (urlObj.searchParams.has('locale')) {
-    urlObj.searchParams.set('locale', 'en-ng');
+if (jsonData.locale) {
+    jsonData.locale = 'en-NG';
 }
 
-let newUrl = urlObj.toString();
+if (jsonData.market) {
+    jsonData.market = 'NG';
+}
 
-$done({url: newUrl});
+let newBody = JSON.stringify(jsonData);
+
+$done({body: newBody});
