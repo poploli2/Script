@@ -1,5 +1,4 @@
 let body = $request.body;
-
 let jsonData = JSON.parse(body);
 
 if (jsonData.locale) {
@@ -7,13 +6,14 @@ if (jsonData.locale) {
 }
 
 if (jsonData.market) {
+    const originalMarket = jsonData.market;
     jsonData.market = 'NG';
-}
-
-if (jsonData.friendlyName) {
-    jsonData.friendlyName = 'cart-NG';
+    
+    if (jsonData.friendlyName) {
+        const marketRegex = new RegExp(originalMarket + '$');
+        jsonData.friendlyName = jsonData.friendlyName.replace(marketRegex, 'NG');
+    }
 }
 
 let newBody = JSON.stringify(jsonData);
-
 $done({body: newBody});
