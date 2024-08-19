@@ -15,9 +15,13 @@ if (jsonData.market) {
     // }
 }
 
+// if (jsonData.friendlyName){
+//     jsonData.friendlyName = 'cart-save-for-later-NG';
+// }
+
 if (jsonData.friendlyName){
-    jsonData.friendlyName = 'cart-save-for-later-NG';
+    jsonData.friendlyName = 'cart-NG';
 }
-    
+
 let newBody = JSON.stringify(jsonData);
 $done({body: newBody});
